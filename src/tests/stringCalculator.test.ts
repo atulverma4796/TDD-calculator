@@ -91,3 +91,33 @@ describe("StringCalculator - Subtract Method", () => {
     expect(calculator.subtract("10,-5,-2")).toBe(17)
   })
 })
+
+describe("Multiply Method", () => {
+  let calculator: StringCalculator
+
+  beforeEach(() => {
+    calculator = new StringCalculator()
+  })
+
+  test("should return 0 for an empty string", () => {
+    expect(calculator.multiply("")).toBe(0)
+  })
+
+  test("should return the number when a single number is provided", () => {
+    expect(calculator.multiply("5")).toBe(5)
+    expect(calculator.multiply("10")).toBe(10)
+  })
+
+  test("should correctly multiply two numbers", () => {
+    expect(calculator.multiply("2,3")).toBe(6)
+    expect(calculator.multiply("5,4")).toBe(20)
+  })
+
+  test("should correctly multiply multiple numbers", () => {
+    expect(calculator.multiply("2,3,4")).toBe(24)
+    expect(calculator.multiply("1,2,3,4,5")).toBe(120)
+  })
+  test("should handle custom delimiter with multiply", () => {
+    expect(calculator.multiply("//;\n10;5;2")).toBe(100)
+  })
+})
