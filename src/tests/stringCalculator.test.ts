@@ -121,3 +121,32 @@ describe("Multiply Method", () => {
     expect(calculator.multiply("//;\n10;5;2")).toBe(100)
   })
 })
+describe("StringCalculator Division", () => {
+  let calculator: StringCalculator
+
+  beforeEach(() => {
+    calculator = new StringCalculator()
+  })
+
+  test("should return 0 for an empty string", () => {
+    expect(calculator.divide("")).toBe(0)
+  })
+
+  test("should divide two numbers separated by a comma", () => {
+    expect(calculator.divide("8,2")).toBe(4)
+  })
+
+  test("should divide multiple numbers", () => {
+    expect(calculator.divide("16,2,2")).toBe(4)
+  })
+
+  test("should throw an error when dividing by zero", () => {
+    expect(() => calculator.divide("8,0")).toThrow(
+      "Division by zero is not allowed"
+    )
+  })
+
+  test("should handle custom delimiter and divide numbers", () => {
+    expect(calculator.divide("//;\n10;2;5")).toBe(1)
+  })
+})

@@ -40,5 +40,18 @@ class StringCalculator {
 
     return numArray.reduce((product, num) => product * num, 1)
   }
+  divide(numbers: string): number {
+    if (!numbers) return 0
+    const { normalizedNumbers } = extractCustomDelimiter(numbers)
+    const normalizedNewLineNumbers =
+      normalizeNewLineDelimiters(normalizedNumbers)
+    const numArray = normalizedNewLineNumbers.split(",").map(Number)
+
+    if (numArray.includes(0)) {
+      throw new Error("Division by zero is not allowed")
+    }
+
+    return numArray.reduce((quotient, num) => quotient / num)
+  }
 }
 export default StringCalculator
