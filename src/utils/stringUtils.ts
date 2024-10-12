@@ -9,7 +9,7 @@ export function extractCustomDelimiter(numbers: string): {
   if (numbers.startsWith("//")) {
     const delimiterEndIndex = numbers.indexOf("\n")
     delimiter = numbers.substring(2, delimiterEndIndex)
-    numbers = numbers.substring(delimiterEndIndex + 1).replace(/;/g, ",")
+    numbers = numbers.substring(delimiterEndIndex + 1).replace(/[;:]/g, ",")
   }
   return { delimiter, normalizedNumbers: numbers }
 }

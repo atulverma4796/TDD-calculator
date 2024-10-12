@@ -39,4 +39,15 @@ describe("StringCalculator", () => {
     expect(calculator.add("//;\n1;2\n3;4")).toBe(10)
     expect(calculator.add("//:\n1;2\n3;4")).toBe(10)
   })
+  test("should throw an error for negative numbers", () => {
+    expect(() => calculator.add("1,-2,3")).toThrow(
+      "Negative numbers not allowed: -2"
+    )
+    expect(() => calculator.add("//;\n1;2;-3")).toThrow(
+      "Negative numbers not allowed: -3"
+    )
+    expect(() => calculator.add("//:\n-1:2:-3")).toThrow(
+      "Negative numbers not allowed: -1, -3"
+    )
+  })
 })
