@@ -15,5 +15,16 @@ class StringCalculator {
     }
     return numArray.reduce((sum, num) => sum + num, 0)
   }
+  subtract(numbers: string): number {
+    if (!numbers) return 0
+    const { normalizedNumbers } = extractCustomDelimiter(numbers)
+    const normalizedNewLineNumbers =
+      normalizeNewLineDelimiters(normalizedNumbers)
+    const numArray = normalizedNewLineNumbers.split(",").map(Number)
+    if (numArray.length === 1) {
+      return numArray[0]
+    }
+    return numArray.reduce((difference, num) => difference - num)
+  }
 }
 export default StringCalculator

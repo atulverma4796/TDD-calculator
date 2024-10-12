@@ -1,6 +1,6 @@
 import StringCalculator from "../stringCalculator"
 
-describe("StringCalculator", () => {
+describe("StringCalculator-Add", () => {
   let calculator: StringCalculator
 
   beforeEach(() => {
@@ -49,5 +49,45 @@ describe("StringCalculator", () => {
     expect(() => calculator.add("//:\n-1:2:-3")).toThrow(
       "Negative numbers not allowed: -1, -3"
     )
+  })
+})
+describe("StringCalculator - Subtract Method", () => {
+  let calculator: StringCalculator
+
+  beforeEach(() => {
+    calculator = new StringCalculator()
+  })
+
+  test("should return 0 for an empty string", () => {
+    expect(calculator.subtract("")).toBe(0)
+  })
+
+  test("should return the number for a single number", () => {
+    expect(calculator.subtract("5")).toBe(5)
+  })
+
+  test("should correctly subtract two numbers", () => {
+    expect(calculator.subtract("10,5")).toBe(5)
+  })
+
+  test("should correctly subtract multiple numbers", () => {
+    expect(calculator.subtract("10,5,2")).toBe(3)
+  })
+
+  test("should handle new line as delimiter", () => {
+    expect(calculator.subtract("10\n5\n2")).toBe(3)
+  })
+
+  test("should handle custom delimiter", () => {
+    expect(calculator.subtract("//;\n10;5;2")).toBe(3)
+  })
+
+  test("should not throw error for negative numbers and return the result", () => {
+    expect(calculator.subtract("10,-5")).toBe(15)
+    expect(calculator.subtract("-10,-5")).toBe(-5)
+  })
+
+  test("should handle multiple negative numbers in the string", () => {
+    expect(calculator.subtract("10,-5,-2")).toBe(17)
   })
 })
