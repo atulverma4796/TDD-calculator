@@ -44,6 +44,18 @@ describe("StringCalculator", () => {
         "Negative numbers not allowed: -3"
       )
     })
+    test("should handle custom delimiter with add-1", () => {
+      expect(calculator.add("//$\n10$2$5")).toBe(17)
+    })
+    test("should handle custom delimiter with add-2", () => {
+      expect(calculator.add("//%\n10%2%5")).toBe(17)
+    })
+    test("should handle custom delimiter with add-3", () => {
+      expect(calculator.add("//#\n10#2#5")).toBe(17)
+    })
+    test("should handle custom delimiter with add-4", () => {
+      expect(calculator.add("//C\n10C2C55")).toBe(67)
+    })
   })
 
   describe("Subtract Method", () => {
@@ -74,6 +86,18 @@ describe("StringCalculator", () => {
     test("should handle negative numbers without error", () => {
       expect(calculator.subtract("10,-5")).toBe(15)
       expect(calculator.subtract("-10,-5")).toBe(-5)
+    })
+    test("should handle custom delimiter with minus-1", () => {
+      expect(calculator.subtract("//!\n10!2!5")).toBe(3)
+    })
+    test("should handle custom delimiter with minus-2", () => {
+      expect(calculator.subtract("//&\n10&2&2")).toBe(6)
+    })
+    test("should handle custom delimiter with minus-3", () => {
+      expect(calculator.subtract("//(\n90(2(20")).toBe(68)
+    })
+    test("should handle custom delimiter with minus-3", () => {
+      expect(calculator.subtract("//(\n90(2(20")).toBe(68)
     })
   })
 
@@ -122,6 +146,12 @@ describe("StringCalculator", () => {
 
     test("should handle custom delimiter with division", () => {
       expect(calculator.divide("//;\n10;2;5")).toBe(1)
+    })
+    test("should handle custom delimiter with division-1", () => {
+      expect(calculator.divide("//~\n10~2~5")).toBe(1)
+    })
+    test("should handle custom delimiter with division-2", () => {
+      expect(calculator.divide("//^\n10^2^5")).toBe(1)
     })
   })
 })
